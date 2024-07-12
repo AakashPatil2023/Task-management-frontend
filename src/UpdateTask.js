@@ -6,24 +6,22 @@ function UpdateTask() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // State variables for form inputs
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [isCompleted, setIsCompleted] = useState('');
 
-  // Fetch task details on component mount
   useEffect(() => {
     axios.get(`http://localhost:4000/task/${id}`)
       .then(res => {
         const { title, description, is_completed } = res.data;
         setTitle(title);
         setDescription(description);
-        setIsCompleted(is_completed); // Assuming your backend returns 'is_completed' field
+        setIsCompleted(is_completed);
       })
       .catch(err => console.log(err));
-  }, [id]); // Dependency on 'id', so useEffect runs when 'id' changes
+  }, [id]); 
 
-  // Handle form submission
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.put(`http://localhost:4000/update/`+id, { title, description, isCompleted })

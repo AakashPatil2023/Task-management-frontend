@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function CreateTask() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [isCompleted, setIsCompleted] = useState('');  // Initialize to false
+  const [isCompleted, setIsCompleted] = useState(''); 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
