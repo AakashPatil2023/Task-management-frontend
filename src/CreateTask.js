@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const apiUrl = process.env.REACT_APP_API_URL; 
+
 function CreateTask() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -10,7 +12,7 @@ function CreateTask() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:4000/create/', { title, description, isCompleted })
+    axios.post(`${apiUrl}/create/`, { title, description, isCompleted })
       .then(res => {
         console.log(res);
         navigate('/');

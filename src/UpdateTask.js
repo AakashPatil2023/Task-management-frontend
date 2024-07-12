@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+const apiUrl = process.env.REACT_APP_API_URL; 
 function UpdateTask() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ function UpdateTask() {
   const [isCompleted, setIsCompleted] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/task/${id}`)
+    axios.get(`${apiUrl}/task/${id}`)
       .then(res => {
         const { title, description, is_completed } = res.data;
         setTitle(title);
@@ -19,12 +20,11 @@ function UpdateTask() {
         setIsCompleted(is_completed);
       })
       .catch(err => console.log(err));
-  }, [id]); 
+  }, [id]);
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:4000/update/`+id, { title, description, isCompleted })
+    axios.put(`${apiUrl}/update/${id}`, { title, description, isCompleted })
       .then(res => {
         console.log(res);
         navigate('/');
