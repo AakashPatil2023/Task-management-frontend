@@ -12,7 +12,7 @@ function CreateTask() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:4000/create/`, { title, description, isCompleted })
+    axios.post(`${apiUrl}/create/`, { title, description, isCompleted })
       .then(res => {
         console.log(res);
         navigate('/');

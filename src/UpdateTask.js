@@ -12,7 +12,7 @@ function UpdateTask() {
   const [isCompleted, setIsCompleted] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/task/${id}`)
+    axios.get(`${apiUrl}/task/${id}`)
       .then(res => {
         const { title, description, is_completed } = res.data;
         setTitle(title);
@@ -24,7 +24,7 @@ function UpdateTask() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:4000/update/${id}`, { title, description, isCompleted })
+    axios.put(`${apiUrl}/update/${id}`, { title, description, isCompleted })
       .then(res => {
         console.log(res);
         navigate('/');
